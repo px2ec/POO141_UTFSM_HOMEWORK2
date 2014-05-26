@@ -6,6 +6,6 @@
 // we define this interface. 
 
 interface Simulateable {  
-   void computeNextState(double delta_t, MyWorld w);
-   void updateState();
+	void computeNextState(double delta_t, MyWorld w);
+	void updateState();
 }
