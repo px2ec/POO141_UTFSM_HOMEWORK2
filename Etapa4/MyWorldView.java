@@ -42,9 +42,15 @@ public class MyWorldView extends JPanel {
 	
 	private MyWorld world;
 
-	public MyWorldView(MyWorld w) {
+	private MouseListener mListener;
+	
+	public MyWorldView(MyWorld w){
 		world = w;
+		mListener = new MouseListener(w);
+		addMouseMotionListener(mListener);
+		addMouseListener(mListener);
 	}
+
 	public void repaintView() {
 		repaint();
 	}
@@ -64,17 +70,8 @@ public class MyWorldView extends JPanel {
 			}
 		}
 	}
-	
-	private MouseListener mListener;
-	
-	public MyWorldView(MyWorld w){
-		world = w;
-		mListener = new MouseListener(w);
-		addMouseMotionListener(mListener);
-		addMouseListener(mListener);
-	}
 
-// other methods.
+	/**/
 
 	public void enableMouseListener(){
 		addMouseMotionListener(mListener);
