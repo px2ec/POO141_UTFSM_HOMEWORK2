@@ -5,6 +5,9 @@
 *.html
 *.css
 package-list
+*.gif
+
+
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
