@@ -59,11 +59,6 @@ class PhysicsLab_GUI extends JFrame {
 		menuItem.addActionListener(menu_l);
 		menu.add(menuItem);
 
-		menuItem = new JMenuItem("Next Item");
-		//menuItem.setAccelerator(KeyStroke.getKeyStrokeForEvent(KeyEvent.VK_N));
-		menuItem.addActionListener(menu_l);
-		menu.add(menuItem);
-
 		JMenu submenu = new JMenu("Simulator");
 
 		menuItem = new JMenuItem("Delta time");

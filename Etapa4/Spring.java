@@ -110,6 +110,11 @@ public class Spring extends PhysicsElement implements Simulateable {
 	public void updateState() {
 	}
 	public void dragTo(double x) {
-	//   this.pos_t = x;
+
+		if ((a_end == null) && (b_end == null)) {		
+			aLoosePosition = x - restLength/2;
+			bLoosePosition = restLength/2 + x;
+		}
+
 	}
 }
