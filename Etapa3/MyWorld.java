@@ -87,7 +87,7 @@ public class MyWorld implements ActionListener {
 		return null;
 	}
 
-	public ArrayList<PhysicsElement> getPhysicsElements(){
+	public ArrayList<PhysicsElement> getPhysicsElements() {
 		return elements;
 	}
 

@@ -12,10 +12,10 @@ public class Spring extends PhysicsElement implements Simulateable {
 	
 	private SpringView view;
 
-	private Spring(){   // nobody can create a block without state
+	private Spring() {   // nobody can create a block without state
 		this(0,0);
 	}
-	public Spring(double restLength, double stiffness){
+	public Spring(double restLength, double stiffness) {
 		super(id++);
 		this.restLength = restLength;
 		this.stiffness = stiffness;
@@ -24,30 +24,34 @@ public class Spring extends PhysicsElement implements Simulateable {
 		bLoosePosition=restLength;
 		view = new SpringView(this);
 	}
-	public void attachAend (SpringAttachable sa) {  // note: we attach a spring to a ball, 
-		if(a_end!=null)                              // not the other way around.
+	public void attachAend(SpringAttachable sa) {  // note: we attach a spring to a ball, 
+		if(a_end!=null)                            // not the other way around.
 		  a_end.detachSpring(this);
-		a_end = sa;                     
+		a_end = sa;
 		sa.attachSpring(this);
 	}
-	public void attachBend (SpringAttachable sa) {  // note: we attach a spring to a ball, 
-		if(b_end!=null)                              // not the other way around.
-		  b_end.detachSpring(this);
-		b_end = sa;                     
+	public void attachBend(SpringAttachable sa) {  // note: we attach a spring to a ball, 
+		if (b_end!=null)                           // not the other way around.
+			b_end.detachSpring(this);
+		b_end = sa;
 		sa.attachSpring(this);
 	}
-	public void detachAend(){
-		if (a_end == null) return;
+	public void detachAend() {
+		if (a_end == null)
+			return;
+
 		a_end.detachSpring(this);
 		aLoosePosition = a_end.getPosition();
 		a_end=null;
-	}      
-	public void detachBend(){
-		if (b_end == null) return;
+	}
+	public void detachBend() {
+		if (b_end == null)
+			return;
+
 		b_end.detachSpring(this);
 		bLoosePosition = b_end.getPosition();
 		b_end=null;
-	}      
+	}
 
 	public double getAendPosition() {
 		if (a_end != null)
