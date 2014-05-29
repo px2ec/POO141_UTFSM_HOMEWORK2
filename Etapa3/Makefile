@@ -9,8 +9,11 @@ CLASSES = \
 	MyWorld.class \
 	PhysicsLab.class \
 	PhysicsElement.class \
+	FixedHook.class \
+	FixedHookView.class \
+	LabMenuListener.class \
 	Simulateable.class \
-	LabMenuListener.class
+	MyWorldView.class
 
 SOURCES = \
 	Ball.java \
@@ -18,8 +21,11 @@ SOURCES = \
 	MyWorld.java \
 	PhysicsLab.java \
 	PhysicsElement.java \
+	FixedHook.java \
+	FixedHookView.java \
 	LabMenuListener.java \
-	Simulateable.class
+	Simulateable.java \
+	MyWorldView.java
 
 MAIN = PhysicsLab
 
