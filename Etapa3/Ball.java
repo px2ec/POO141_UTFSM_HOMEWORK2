@@ -24,6 +24,8 @@ public class Ball extends PhysicsElement implements Simulateable, SpringAttachab
 		this.speed_t = speed;
 		this.mass = mass;
 		this.radius = radius;
+		this.a_t = 0;
+		this.a_tMinusDelta = 0;
 		view = new BallView(this);
 		springs = new ArrayList<Spring>();
 	}
@@ -51,18 +53,6 @@ public class Ball extends PhysicsElement implements Simulateable, SpringAttachab
 	}
 	
 	public void computeNextState(double delta_t, MyWorld world) {
-	/*	// Assumption: On collision we only change speed
-		Ball b;
-		// Elastic collision 
-		if ((b = world.findCollidingBall(this)) != null) {
-			speed_tPlusDelta  = (speed_t * (this.mass - b.getMass()) + 2 * b.getMass() * b.getSpeed());
-			speed_tPlusDelta /= (this.mass + b.getMass());
-			pos_tPlusDelta = pos_t;
-		} else {
-			speed_tPlusDelta = speed_t;
-			pos_tPlusDelta = pos_t + speed_tPlusDelta * delta_t;
-		}*/
-
 		Ball b;
 		a_t = getNetForce() / mass;
 
@@ -71,32 +61,21 @@ public class Ball extends PhysicsElement implements Simulateable, SpringAttachab
 			speed_tPlusDelta  = speed_t * (this.mass - b.getMass()) + 2 * b.getMass() * b.getSpeed();
 			speed_tPlusDelta /= this.mass + b.getMass();
 			pos_tPlusDelta = pos_t + speed_tPlusDelta * delta_t;
-		//	System.err.println("pos_t: " + pos_t + "; pos_tPlusDelta: " + pos_tPlusDelta);
-
 		} else {
 			speed_tPlusDelta = speed_t + 0.5 * (3 * a_t - a_tMinusDelta) * delta_t;
-			// pos_tPlusDelta = pos_t + speed_t * delta_t + 0.5 * a_t * delta_t * delta_t;
 			pos_tPlusDelta = pos_t + speed_t * delta_t + (4 * a_t - a_tMinusDelta) * delta_t * delta_t / 6;
 		}
-
 	}
 	public boolean collide(Ball b) {
-		if (this == b)
+		if (b == null)
 			return false;
-		
-		boolean closeEnougth = Math.abs(getPosition() - b.getPosition()) < (getRadius() + b.getRadius());
-		boolean approaching;
-		
-		if (b.getPosition() < getPosition())
-			approaching = getSpeed() < b.getSpeed();
-		else
-			approaching = getSpeed() > b.getSpeed();
-		
-		return closeEnougth && approaching;
+
+		return (Math.abs(b.getPosition() - this.pos_t) <= (b.getRadius() + this.radius));
 	}
 	public void updateState() {
 		pos_t = pos_tPlusDelta;
 		speed_t = speed_tPlusDelta;
+		a_tMinusDelta = a_t;
 	}
 	public void updateView(Graphics2D g) {
 		/*
