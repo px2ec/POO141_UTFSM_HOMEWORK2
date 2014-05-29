@@ -24,10 +24,10 @@ public class LabMenuListener implements ActionListener {
 			world.addElement(b1);
 			world.addElement(f0);*/
 
-			double mass = 1.0;      //  1.0 [kg] 
+			double mass = 2.0;      //  1.0 [kg] 
 			double radius = 0.1;    // 10.0 [cm] 
 			double position = 0.0;  //  1.0 [m] 
-			double speed = 0.5;     //  0.5 [m/s]
+			double speed = 1.0;     //  0.5 [m/s]
 			Ball b0 = new Ball(mass, radius, 1.5, speed);
 			Ball b1 = new Ball(mass, radius, 2.5, 0);
 			FixedHook f0 = new FixedHook(0.0);
