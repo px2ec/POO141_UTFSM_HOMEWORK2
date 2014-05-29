@@ -43,10 +43,13 @@ public class MyWorld implements ActionListener {
 	public void start() {
 		if (passingTime.isRunning())
 			return;
-		passingTime.start();      
+		passingTime.start();
+		view.desableMouseListener();
+      
 	}
 	public void stop() {
-		passingTime.stop(); 
+		passingTime.stop();
+		view.enableMouseListener(); 
 	}
 
 	public void actionPerformed(ActionEvent event) {

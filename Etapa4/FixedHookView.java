@@ -28,7 +28,7 @@ public class FixedHookView {
 	}
 
 	public void setReleased() {
-		color = Color.BLUE;
+		color = Color.GREEN;
 	}
 
 	void updateView(Graphics2D g) {

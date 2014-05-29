@@ -1,6 +1,8 @@
 import javax.swing.JFrame;
 import javax.swing.*;
 import java.awt.Container;
+import javax.swing.KeyStroke;
+import java.awt.event.*;
 
 public class PhysicsLab {
 	public static void main(String[] args) {
@@ -54,6 +56,11 @@ class PhysicsLab_GUI extends JFrame {
 		menu.add(menuItem);
 
 		menuItem = new JMenuItem("Stop");
+		menuItem.addActionListener(menu_l);
+		menu.add(menuItem);
+
+		menuItem = new JMenuItem("Next Item");
+		//menuItem.setAccelerator(KeyStroke.getKeyStrokeForEvent(KeyEvent.VK_N));
 		menuItem.addActionListener(menu_l);
 		menu.add(menuItem);
 
