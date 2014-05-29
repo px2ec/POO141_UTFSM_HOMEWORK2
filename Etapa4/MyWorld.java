@@ -88,11 +88,14 @@ public class MyWorld implements ActionListener {
 	}
   
     public SpringAttachable findAttachableElement(double x){
-		for (SpringAttachable spa: elements)
-		if (spa.getPosition() == x)
-			return spa;
+		for (PhysicsElement e: elements) {
+			if (e instanceof SpringAttachable) {
+				SpringAttachable spa = (SpringAttachable) e;
+					if (spa.getPosition() == x)
+						return spa;
+			}
+		}
     	return null;
-
     }
 
 	public ArrayList<PhysicsElement> getPhysicsElements() {
