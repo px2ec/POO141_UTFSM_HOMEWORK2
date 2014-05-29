@@ -3,6 +3,8 @@
 *.png
 *.htm
 *.html
+*.css
+package-list
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
