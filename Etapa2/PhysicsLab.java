@@ -19,6 +19,9 @@ class PhysicsLab_GUI extends JFrame {
       world.setView(worldView);
       add(worldView);  
       LabMenuListener menuListener = new LabMenuListener(world);
+
+
+      this.setJMenuBar(this.createLabMenuBar(menuListener));
       /*  .....   */;
    }
 
