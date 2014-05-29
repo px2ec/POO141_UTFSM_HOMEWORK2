@@ -1,7 +1,7 @@
 import java.util.*;
 import java.awt.*;
 
-public class Ball extends PhysicsElement implements Simulateable {
+public class Ball extends PhysicsElement implements Simulateable, SpringAttachable {
 	private static int id = 0;       // Ball identification number
 	private final double mass;
 	private final double radius;
@@ -10,6 +10,7 @@ public class Ball extends PhysicsElement implements Simulateable {
 	private double speed_t;          // Speed at time t
 	private double speed_tPlusDelta; // Speed in delta time in future
 	private BallView view;           // Ball view of Model-View-Controller design pattern
+	private ArrayList<Spring> springs; // ArrayList can grow, arrays cannot
 
 	private Ball() {
 		// Nobody can create a block without state
@@ -22,6 +23,7 @@ public class Ball extends PhysicsElement implements Simulateable {
 		this.mass = mass;
 		this.radius = radius;
 		view = new BallView(this);
+		springs = new ArrayList<Spring>();
 	}
 	public double getMass() {
 		return mass;
@@ -90,5 +92,22 @@ public class Ball extends PhysicsElement implements Simulateable {
 	}
 	public String getState() {
 		return getPosition() + "";
+	}
+	public void attachSpring(Spring spring) {
+		if (spring == null)
+			return;
+
+		springs.add(spring);
+	}
+	public void detachSpring(Spring spring) {
+		if (spring == null)
+			return;
+
+		for (Spring s: springs) {
+			if (spring.getId() == s.getId()) {
+				springs.remove(spring);
+			}
+
+		}
 	}
 }

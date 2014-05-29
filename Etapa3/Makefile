@@ -11,6 +11,9 @@ CLASSES = \
 	PhysicsElement.class \
 	FixedHook.class \
 	FixedHookView.class \
+	Spring.class \
+	SpringView.class \
+	SpringAttachable.class\
 	LabMenuListener.class \
 	Simulateable.class \
 	MyWorldView.class
@@ -23,6 +26,9 @@ SOURCES = \
 	PhysicsElement.java \
 	FixedHook.java \
 	FixedHookView.java \
+	Spring.java \
+	SpringView.java \
+	SpringAttachable.java\
 	LabMenuListener.java \
 	Simulateable.java \
 	MyWorldView.java

@@ -5,6 +5,7 @@ public class FixedHook extends PhysicsElement implements Simulateable, SpringAtt
 	private static int id = 0;         // Ball identification number
 	private double pos_t;              // Current position at time t
 	private double pos_tPlusDelta;     // Next position in delta time in future
+	private double speed_t;
 	private ArrayList<Spring> springs; // ArrayList can grow, arrays cannot
 	private FixedHookView view;
 
@@ -23,6 +24,10 @@ public class FixedHook extends PhysicsElement implements Simulateable, SpringAtt
 
 	public double getPosition() {
 		return pos_t;
+	}
+
+	public double getSpeed() {
+		return speed_t;
 	}
 
 	public void computeNextState(double delta_t, MyWorld world) {
