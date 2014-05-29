@@ -13,6 +13,7 @@ public class Block extends PhysicsElement implements SpringAttachable, Simulatea
 	private double a_t;                // Acceleration at time t
 	private double a_tMinusDelta;      // Acceleration delta time ago
 	private ArrayList<Spring> springs; // ArrayList can grow, arrays cannot
+	private BlockView view;           // Ball view of Model-View-Controller design pattern
 
 	private boolean in_collision = false;
 
@@ -101,6 +102,23 @@ public class Block extends PhysicsElement implements SpringAttachable, Simulatea
 		a_tMinusDelta = a_t;
 	}
 
+	public void updateView(Graphics2D g) {
+		/*
+		 * Update this Ball's view in Model-View-Controller
+		 * design pattern
+		 */
+		view.updateView(g);
+	}
+	public boolean contains(double x, double y) {
+		return view.contains(x,y);
+	}
+	public void setSelected() {
+		view.setSelected();
+	}
+	public void setReleased() {
+		view.setReleased();
+	}
+
 	public String getDescription() {
 		return "Block_" + super.getId();
 	}
@@ -110,5 +128,21 @@ public class Block extends PhysicsElement implements SpringAttachable, Simulatea
 			return;
 
 		springs.add(spring);
+	}
+
+	public void detachSpring(Spring spring) {
+		if (spring == null)
+			return;
+
+		for (Spring s: springs) {
+			if (spring.getId() == s.getId()) {
+				springs.remove(spring);
+			}
+
+		}
+	}
+
+	public void dragTo(double x) {
+		this.pos_t = x;
 	}
 }
