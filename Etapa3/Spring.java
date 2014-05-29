@@ -75,7 +75,7 @@ public class Spring extends PhysicsElement {
       return force;
    }
    public void updateView (Graphics2D g){
-     view.updateView(g);      
+     view.updateView(g);
    }
    public void setSelected(){
       view.setSelected();
@@ -92,5 +92,8 @@ public class Spring extends PhysicsElement {
    public String getState() {
       String s = getAendPosition() + "\t" + getBendPosition();
       return s;
+   }
+   public void dragTo(double x) {
+   //   this.pos_t = x;
    }
 }

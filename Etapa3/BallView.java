@@ -12,13 +12,6 @@ public class BallView {
 	}
 
 	public boolean contains(double x, double y) {
-		/* I HAVE NO IDEA WHAT I'M DOING */
-		/* I HAVE NO IDEA WHAT I'M DOING */
-		/* I HAVE NO IDEA WHAT I'M DOING */
-		/* I HAVE NO IDEA WHAT I'M DOING */
-		/* I HAVE NO IDEA WHAT I'M DOING */
-		/* I HAVE NO IDEA WHAT I'M DOING */
-
 		double bPos = ball.getPosition();
 		double bRad = ball.getRadius();
 

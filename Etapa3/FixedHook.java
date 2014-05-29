@@ -1,11 +1,12 @@
 import java.util.*;
 import java.awt.*;
 
-public class FixedHook extends PhysicsElement implements SpringAttachable {
+public class FixedHook extends PhysicsElement implements Simulateable, SpringAttachable {
 	private static int id = 0;         // Ball identification number
 	private double pos_t;              // Current position at time t
 	private double pos_tPlusDelta;     // Next position in delta time in future
 	private ArrayList<Spring> springs; // ArrayList can grow, arrays cannot
+	private FixedHookView view;
 
 	private FixedHook() {
 		// Nobody can create a block without state
@@ -17,10 +18,7 @@ public class FixedHook extends PhysicsElement implements SpringAttachable {
 		pos_t = position;
 
 		springs = new ArrayList<Spring>();
-	}
-
-	public String getState() {
-		return "";
+		view = new FixedHookView(this);
 	}
 
 	public double getPosition() {
@@ -44,5 +42,34 @@ public class FixedHook extends PhysicsElement implements SpringAttachable {
 			return;
 
 		springs.add(spring);
+	}
+	public void detachSpring(Spring spring) {
+		if (spring == null)
+			return;
+
+		for (Spring s: springs) {
+			if (spring.getId() == s.getId()) {
+				springs.remove(spring);
+			}
+
+		}
+	}
+	public void updateView (Graphics2D g){
+    	view.updateView(g);
+    }
+	public boolean contains(double x, double y) {
+		return view.contains(x,y);
+	}
+	public void setSelected() {
+		view.setSelected();
+	}
+	public void setReleased() {
+		view.setReleased();
+	}
+	public void dragTo(double x) {
+		this.pos_t = x;
+	}
+	public String getState() {
+		return getPosition() + "";
 	}
 }
