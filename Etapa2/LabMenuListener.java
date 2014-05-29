@@ -23,14 +23,15 @@ public class LabMenuListener implements ActionListener {
          world.addElement(b1);
       }
       if (text.equals("Ball")) {
-        // nothing by now       
+        Ball b0 = new Ball(1.0, 0.1, 0, 0);
+        world.addElement(b0);      
       }
       if (text.equals("Fixed Hook")) ; // ; same as nothing
       if (text.equals("Spring")) ;
 
       // Actions associated to MyWorld submenu
       if (text.equals("Start"))  world.start();
-      if (text.equals("Stop"))    /* to be coded */;
+      if (text.equals("Stop")) world.stop();
       if (text.equals("Delta time")) {
          String data = JOptionPane.showInputDialog("Enter delta t [s]");
          world.setDelta_t(Double.parseDouble(data));

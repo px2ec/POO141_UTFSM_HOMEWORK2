@@ -46,6 +46,7 @@ public class MyWorld implements ActionListener {
 		passingTime.start();      
 	}
 	public void stop() {
+		passingTime.stop(); 
 	}
 
 	public void actionPerformed(ActionEvent event) {
