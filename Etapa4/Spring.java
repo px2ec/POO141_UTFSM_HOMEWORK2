@@ -21,7 +21,8 @@ public class Spring extends PhysicsElement implements Simulateable {
 		this.stiffness = stiffness;
 		a_end = b_end = null;
 		aLoosePosition=0;
-		bLoosePosition=restLength;
+		bLoosePosition = restLength;
+		currentLength = restLength;
 		view = new SpringView(this);
 	}
 	public void attachAend(SpringAttachable sa) {  // note: we attach a spring to a ball, 
@@ -82,7 +83,7 @@ public class Spring extends PhysicsElement implements Simulateable {
 		return force;
 	}
 	public void updateView (Graphics2D g){
-	  view.updateView(g);
+		view.updateView(g);
 	}
 	public void setSelected(){
 		view.setSelected();
@@ -109,11 +110,24 @@ public class Spring extends PhysicsElement implements Simulateable {
 	
 	public void updateState() {
 	}
+
 	public void dragTo(double x) {
 
-		if ((a_end == null) && (b_end == null)) {		
-			aLoosePosition = x - restLength/2;
-			bLoosePosition = restLength/2 + x;
+		if ((a_end == null) && (b_end == null)) {
+			aLoosePosition = x - currentLength/2;
+			bLoosePosition = currentLength/2 + x;
+		} else if ((a_end != null) && (b_end == null)) {
+			currentLength = Math.abs(a_end.getPosition() - bLoosePosition);
+			((PhysicsElement)a_end).dragTo(x - currentLength/2);
+			bLoosePosition = currentLength/2 + x;
+		} else if ((a_end == null) && (b_end != null)) {
+			currentLength = Math.abs(aLoosePosition - b_end.getPosition());
+			aLoosePosition = x - currentLength/2;
+			((PhysicsElement)b_end).dragTo(currentLength/2 + x);
+		} else if ((a_end != null) && (b_end != null)) {
+			currentLength = Math.abs(a_end.getPosition() - b_end.getPosition());
+			((PhysicsElement)a_end).dragTo(x - currentLength/2);
+			((PhysicsElement)b_end).dragTo(currentLength/2 + x);
 		}
 
 	}
