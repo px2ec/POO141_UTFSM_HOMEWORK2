@@ -44,6 +44,10 @@ class PhysicsLab_GUI extends JFrame {
       menuItem = new JMenuItem("Fixed Hook");
       menuItem.addActionListener(menu_l);
       subMenu.add(menuItem);
+
+      menuItem = new JMenuItem("My scenario");
+      menuItem.addActionListener(menu_l);
+      subMenu.add(menuItem);
  /*....*/      
       menu = new JMenu("MyWorld");
       mb.add(menu);
@@ -55,9 +59,17 @@ class PhysicsLab_GUI extends JFrame {
       menuItem.addActionListener(menu_l);
       menu.add(menuItem);
 
+      JMenu submenu = new JMenu("Simulator");
+
       menuItem = new JMenuItem("Delta time");
       menuItem.addActionListener(menu_l);
-      menu.add(menuItem);
+      submenu.add(menuItem);
+
+      menuItem = new JMenuItem("View Refresh time");
+      menuItem.addActionListener(menu_l);
+      submenu.add(menuItem);
+
+      menu.add(submenu);
 /* ...*/
       return mb;          
    }   
