@@ -9,8 +9,9 @@ CLASSES = \
 	MyWorld.class \
 	PhysicsLab.class \
 	PhysicsElement.class \
+	LabMenuListener.class \
 	Simulateable.class \
-	LabMenuListener.class
+	MyWorldView.class
 
 SOURCES = \
 	Ball.java \
@@ -19,7 +20,8 @@ SOURCES = \
 	PhysicsLab.java \
 	PhysicsElement.java \
 	LabMenuListener.java \
-	Simulateable.class
+	Simulateable.java \
+	MyWorldView.java
 
 MAIN = PhysicsLab
 
