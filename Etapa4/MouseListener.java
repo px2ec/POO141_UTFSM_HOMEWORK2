@@ -28,8 +28,8 @@ public class MouseListener extends MouseAdapter {
 	public void mouseDragged(MouseEvent e) {
 		Point2D.Double p = new Point2D.Double(0,0); // Change mouse coordenates from
 		MyWorldView.SPACE_INVERSE_TRANSFORM.transform(e.getPoint(),p);// pixels to meters.
-
-		currentElement.dragTo(p.getX());
+		if (currentElement != null)
+			currentElement.dragTo(p.getX());
 
 		world.repaintView();
 	}
@@ -44,13 +44,13 @@ public class MouseListener extends MouseAdapter {
 			 // we dragged a spring, so we look for and attachable element near by  
 			SpringAttachable element = world.findAttachableElement(spring);
 			if (element != null) {
-				System.out.println("A:"+spring.getAendPosition()+"; B:"+spring.getBendPosition());
+				//System.out.println("A:"+spring.getAendPosition()+"; B:"+spring.getBendPosition());
 				double pos_e  = ((SpringAttachable)element).getPosition();
 				double rad  = ((SpringAttachable)element).getRadius();
 				// we dragged a spring and it is near an attachable element,
 				// so we hook it to a spring end.
 				double a=spring.getAendPosition();
-				System.out.println("Ball:" + (pos_e - rad) + "," + (pos_e + rad));
+				//System.out.println("Ball:" + (pos_e - rad) + "," + (pos_e + rad));
 				if ((a > pos_e - rad) && (a < pos_e + rad))
 				//if (a==p.getX())
 					spring.attachAend(element);

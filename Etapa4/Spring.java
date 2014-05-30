@@ -26,16 +26,18 @@ public class Spring extends PhysicsElement implements Simulateable {
 		view = new SpringView(this);
 	}
 	public void attachAend(SpringAttachable sa) {  // note: we attach a spring to a ball, 
-		if(a_end!=null)                            // not the other way around.
-		  a_end.detachSpring(this);
-		a_end = sa;
-		sa.attachSpring(this);
+		if(a_end == null){                            // not the other way around.
+		  //a_end.detachSpring(this);
+			a_end = sa;
+			sa.attachSpring(this);
+		}
 	}
 	public void attachBend(SpringAttachable sa) {  // note: we attach a spring to a ball, 
-		if (b_end!=null)                           // not the other way around.
-			b_end.detachSpring(this);
-		b_end = sa;
-		sa.attachSpring(this);
+		if (b_end == null){                           // not the other way around.
+			//b_end.detachSpring(this);
+			b_end = sa;
+			sa.attachSpring(this);
+		}
 	}
 	public void detachAend() {
 		if (a_end == null)

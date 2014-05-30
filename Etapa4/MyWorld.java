@@ -97,7 +97,7 @@ public class MyWorld implements ActionListener {
 				double rad  = ((SpringAttachable)e).getRadius();
 				double posA = s.getAendPosition();
 				double posB = s.getBendPosition();
-				if ((posA > pos_e - rad) || (posA < pos_e + rad) || (posB > pos_e - rad) || (posB < pos_e + rad))
+				if (((posA > pos_e - rad) && (posA < pos_e + rad)) || ((posB > pos_e - rad) && (posB < pos_e + rad)))
 					return (SpringAttachable) e;
 			}
 		}
