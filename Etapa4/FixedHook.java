@@ -37,6 +37,10 @@ public class FixedHook extends PhysicsElement implements Simulateable, SpringAtt
 	public void updateState() {
 		pos_t = pos_tPlusDelta;
 	}
+	
+	public double getRadius() {
+		return 0.1;
+	}
 
 	public String getDescription() {
 		return "FixedHook_" + super.getId();

@@ -90,10 +90,15 @@ public class MyWorld implements ActionListener {
 		return null;
 	}
   
-    public SpringAttachable findAttachableElement(double x){
+    public SpringAttachable findAttachableElement(Spring s){
 		for (PhysicsElement e: elements) {
 			if (e instanceof SpringAttachable) {
-					if (((SpringAttachable)e).getPosition() == x) return (SpringAttachable) e;
+				double pos_e  = ((SpringAttachable)e).getPosition();
+				double rad  = ((SpringAttachable)e).getRadius();
+				double posA = s.getAendPosition();
+				double posB = s.getBendPosition();
+				if ((posA > pos_e - rad) || (posA < pos_e + rad) || (posB > pos_e - rad) || (posB < pos_e + rad))
+					return (SpringAttachable) e;
 			}
 		}
     	return null;
