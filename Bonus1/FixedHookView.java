@@ -1,23 +1,23 @@
 import java.awt.*;
 import java.awt.geom.*;
 
-public class BlockView {
+public class FixedHookView {
 	private final double width;
-	private Color color = Color.BLACK;
+	private Color color = Color.GREEN;
 	private Rectangle2D.Double shape = null;
-	private Block block;
+	private FixedHook hook;
 	
-	public BlockView (Block b) {
+	public FixedHookView(FixedHook h) {
 		this.width = 0.1;
-		this.block = b;
+		this.hook = h;
 		this.shape = new Rectangle2D.Double();
 	}
 
 	public boolean contains(double x, double y) {
-		double bPos = block.getPosition();
+		double hPos = hook.getPosition();
 
-		if ((bPos - width/2.0) <= x && x <= (bPos + width/2.0))
-			if ((bPos - width/2.0) <= y && y <= (bPos + width/2.0))
+		if ((hPos - width/2.0) <= x && x <= (hPos + width/2.0))
+			if ((hPos - width/2.0) <= y && y <= (hPos + width/2.0))
 				return true;
 
 		return false;
@@ -28,13 +28,13 @@ public class BlockView {
 	}
 
 	public void setReleased() {
-		color = Color.BLACK;
+		color = Color.GREEN;
 	}
 
 	void updateView(Graphics2D g) {
-		double bPos = block.getPosition();
+		double hPos = hook.getPosition();
 
-		shape.setFrameFromCenter(bPos, 0, bPos + width, width);
+		shape.setFrameFromCenter(hPos, 0, hPos + width, width);
 		g.setColor(color);
 		g.fill(shape);
 	}
