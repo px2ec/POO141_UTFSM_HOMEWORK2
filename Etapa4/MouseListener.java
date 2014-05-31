@@ -3,18 +3,66 @@ import java.awt.event.*;
 import java.awt.event.MouseAdapter;
 import java.awt.*;
 import java.awt.geom.Point2D;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.ListIterator;
 
-public class MouseListener extends MouseAdapter {
+public class MouseListener extends MouseAdapter implements KeyListener {
 	private MyWorld world;
 	private PhysicsElement currentElement;
+	private ListIterator<PhysicsElement> litr;
+	private ArrayList<PhysicsElement> inpos;
+	 
+	/** Handle the key typed event from the text field. */
+	public void keyTyped(KeyEvent e) {
+		
+	}
+	 
+	/** Handle the key pressed event from the text field. */
+	public void keyPressed(KeyEvent e) {
+		/*System.out.println("keyPressed="+KeyEvent.getKeyText(e.getKeyCode()));
+		if(e.getKeyCode()==KeyEvent.VK_N) {
+			actionPerformed(null);
+		}*/
+
+		if(e.getKeyCode()!=KeyEvent.VK_N) return;
+
+		if (inpos.size() == 0) return;
+
+		if (!(litr.hasNext())) return;
+
+		PhysicsElement newElement = litr.next();
+		if (newElement == currentElement) return;
+		if (currentElement != null) {
+			currentElement.setReleased();
+			currentElement = null;
+		}
+		if (newElement != null) { 
+			currentElement = newElement;
+			currentElement.setSelected();
+		}
+		world.repaintView();
+
+	}
+	 
+	/** Handle the key released event from the text field. */
+	public void keyReleased(KeyEvent e) {
+		
+	}
+
 	public MouseListener (MyWorld w){
+		inpos = new ArrayList<PhysicsElement>();
 		world = w;
 	} 
+
 	public void mouseMoved(MouseEvent e) {
 		Point2D.Double p = new Point2D.Double(0,0); // Change mouse coordenates from
 		MyWorldView.SPACE_INVERSE_TRANSFORM.transform(e.getPoint(),p);// pixels to meters.
-		world.find(p.getX(), p.getY());
-		PhysicsElement newElement = world.findCurrentElement(); 
+		inpos = world.find(p.getX(), p.getY());
+		if (inpos.size() == 0) return;
+		litr = inpos.listIterator();
+		litr.next();
+		PhysicsElement newElement = litr.previous();
 		if (newElement == currentElement) return;
 		if (currentElement != null) {
 			currentElement.setReleased();

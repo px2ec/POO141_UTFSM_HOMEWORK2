@@ -15,8 +15,6 @@ public class MyWorld implements ActionListener {
 	private double delta_t;        // in seconds
 	private double refreshPeriod;  // in seconds
 	private ArrayList<PhysicsElement> inpos;
-	private PhysicsElement current;
-	private ListIterator<PhysicsElement> litr;
 
 	public MyWorld() {
 		this(System.out);
@@ -115,24 +113,12 @@ public class MyWorld implements ActionListener {
 		return elements;
 	}
 
-	public void find(double x, double y) {
+	public ArrayList<PhysicsElement> find(double x, double y) {
 		inpos.clear();
 		for (PhysicsElement e: elements) {
 				if (e.contains(x,y))
 					inpos.add(e);
 		}
-		if (inpos.size() != 0) {
-			litr = inpos.listIterator();
-			current = inpos.get(0);
-		}
-	}
-
-	public PhysicsElement findCurrentElement() {	
-		return current;
-	}
-
-	public void findNext(){
-		if (litr.hasNext()) 
-			current = litr.next();
+		return inpos;
 	}
 }

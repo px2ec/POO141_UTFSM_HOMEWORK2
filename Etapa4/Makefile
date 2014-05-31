@@ -17,8 +17,7 @@ CLASSES = \
 	LabMenuListener.class \
 	Simulateable.class \
 	MyWorldView.class \
-	MouseListener.class \
-	MyKeyListener.class
+	MouseListener.class
 
 SOURCES = \
 	Ball.java \
@@ -34,8 +33,7 @@ SOURCES = \
 	LabMenuListener.java \
 	Simulateable.java \
 	MyWorldView.java \
-	MouseListener.java \
-	MyKeyListener.java
+	MouseListener.java
 
 MAIN = PhysicsLab
 

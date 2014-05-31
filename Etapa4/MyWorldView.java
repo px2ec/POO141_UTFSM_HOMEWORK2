@@ -43,16 +43,13 @@ public class MyWorldView extends JPanel {
 	private MyWorld world;
 
 	private MouseListener mListener;
-
-	private MyKeyListener mkListener;
 	
 	public MyWorldView(MyWorld w){
 		world = w;
 		mListener = new MouseListener(w);
-		mkListener = new MyKeyListener(w);
 		addMouseMotionListener(mListener);
 		addMouseListener(mListener);
-		addKeyListener(mkListener);
+		addKeyListener(mListener);
 		setFocusable(true);
 	}
 
