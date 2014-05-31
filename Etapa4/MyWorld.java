@@ -16,10 +16,15 @@ public class MyWorld implements ActionListener {
 	private double refreshPeriod;  // in seconds
 	private ArrayList<PhysicsElement> inpos;
 
+	/**
+	*/
 	public MyWorld() {
 		this(System.out);
 	}
 
+	/**
+	* @param output  text out
+	*/
 	public MyWorld(PrintStream output) {
 		view = null;
 		out = output;
@@ -31,20 +36,39 @@ public class MyWorld implements ActionListener {
 		passingTime = new Timer((int)(refreshPeriod*1000), this);    
 	}
 
+	/**
+	* @param e   Physic element
+	*/
 	public void addElement(PhysicsElement e) {
 		elements.add(e);
 		view.repaintView();
 	}
+
+	/**
+	* @param view   graphic world
+	*/
 	public void setView(MyWorldView view) {
 		this.view = view;
 	}
+
+	/**
+	* @param delta   asign delta
+	*/
 	public void setDelta_t(double delta) {
 		delta_t = delta;
 	}
+
+	/**
+	* @param rp   sample-rate value
+	*/
 	public void setRefreshPeriod(double rp) {
 		refreshPeriod = rp;
 		passingTime.setDelay((int)(refreshPeriod*1000)); // convert from [s] to [ms]
 	}
+
+	/**
+	* @return Start simulation
+	*/
 	public void start() {
 		if (passingTime.isRunning())
 			return;
@@ -52,11 +76,17 @@ public class MyWorld implements ActionListener {
 		view.desableMouseListener();
       
 	}
+
+	/**
+	*/
 	public void stop() {
 		passingTime.stop();
 		view.enableMouseListener(); 
 	}
 
+	/**
+	* @param event   param for listener
+	*/
 	public void actionPerformed(ActionEvent event) {
 		/*
 		 * Like simulate method of Assignment 1,
@@ -82,10 +112,16 @@ public class MyWorld implements ActionListener {
 		}
 	}
 
+	/**
+	*/
 	public void repaintView() {
 		view.repaintView();
 	}
 
+	/**
+	* @return Ball colliding
+	* @param me   consulting ball
+	*/
 	public Ball findCollidingBall(Ball me) {
 		for (PhysicsElement e: elements)
 			if (e instanceof Ball) {
@@ -94,7 +130,11 @@ public class MyWorld implements ActionListener {
 			}
 		return null;
 	}
-  
+
+	/**
+	* @return Foundnd attachable elements
+	* @param s   Spring source
+	*/
     public SpringAttachable findAttachableElement(Spring s){
 		for (PhysicsElement e: elements) {
 			if (e instanceof SpringAttachable) {
@@ -109,10 +149,18 @@ public class MyWorld implements ActionListener {
     	return null;
     }
 
+	/**
+	* @return Elements from this world
+	*/
 	public ArrayList<PhysicsElement> getPhysicsElements() {
 		return elements;
 	}
 
+	/**
+	* @return Elements in a point
+	* @param x   x position
+	* @param y   y position
+	*/
 	public ArrayList<PhysicsElement> find(double x, double y) {
 		inpos.clear();
 		for (PhysicsElement e: elements) {
