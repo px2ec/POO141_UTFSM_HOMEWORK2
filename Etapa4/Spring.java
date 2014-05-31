@@ -106,8 +106,12 @@ public class Spring extends PhysicsElement implements Simulateable {
 
 	public void computeNextState(double delta_t, MyWorld w) {
 		//currentLength = Math.abs(b_end.getPosition() - a_end.getPosition());
-		currentLength = b_end.getPosition() - a_end.getPosition();
-		delta_x = currentLength - restLength;
+		if ((b_end == null) || (a_end == null))
+			delta_x = 0;
+		else {
+			currentLength = b_end.getPosition() - a_end.getPosition();
+			delta_x = currentLength - restLength;
+		}
 	}
 	
 	public void updateState() {
