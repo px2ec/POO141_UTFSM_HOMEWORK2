@@ -20,10 +20,7 @@ public class MouseListener extends MouseAdapter implements KeyListener {
 	 
 	/** Handle the key pressed event from the text field. */
 	public void keyPressed(KeyEvent e) {
-		/*System.out.println("keyPressed="+KeyEvent.getKeyText(e.getKeyCode()));
-		if(e.getKeyCode()==KeyEvent.VK_N) {
-			actionPerformed(null);
-		}*/
+		//System.out.println("keyPressed="+KeyEvent.getKeyText(e.getKeyCode()));
 
 		if(e.getKeyCode()!=KeyEvent.VK_N) return;
 
@@ -32,15 +29,13 @@ public class MouseListener extends MouseAdapter implements KeyListener {
 		if (!(litr.hasNext())) return;
 
 		PhysicsElement newElement = litr.next();
-		if (newElement == currentElement) return;
-		if (currentElement != null) {
+	
+		if (currentElement!=null) 
 			currentElement.setReleased();
-			currentElement = null;
-		}
-		if (newElement != null) { 
-			currentElement = newElement;
-			currentElement.setSelected();
-		}
+
+		currentElement = newElement;
+		currentElement.setSelected();
+
 		world.repaintView();
 
 	}
@@ -58,11 +53,13 @@ public class MouseListener extends MouseAdapter implements KeyListener {
 	public void mouseMoved(MouseEvent e) {
 		Point2D.Double p = new Point2D.Double(0,0); // Change mouse coordenates from
 		MyWorldView.SPACE_INVERSE_TRANSFORM.transform(e.getPoint(),p);// pixels to meters.
+		inpos.clear();
 		inpos = world.find(p.getX(), p.getY());
+		//for (PhysicsElement el: inpos)
+		//	System.out.println(el.getDescription());
 		if (inpos.size() == 0) return;
 		litr = inpos.listIterator();
-		litr.next();
-		PhysicsElement newElement = litr.previous();
+		PhysicsElement newElement = litr.next();
 		if (newElement == currentElement) return;
 		if (currentElement != null) {
 			currentElement.setReleased();

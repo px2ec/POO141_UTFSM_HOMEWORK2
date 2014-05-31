@@ -116,8 +116,7 @@ public class MyWorld implements ActionListener {
 	public ArrayList<PhysicsElement> find(double x, double y) {
 		inpos.clear();
 		for (PhysicsElement e: elements) {
-				if (e.contains(x,y))
-					inpos.add(e);
+				if (e.contains(x,y)) inpos.add(e);
 		}
 		return inpos;
 	}
