@@ -13,7 +13,8 @@ public class MouseListener extends MouseAdapter {
 	public void mouseMoved(MouseEvent e) {
 		Point2D.Double p = new Point2D.Double(0,0); // Change mouse coordenates from
 		MyWorldView.SPACE_INVERSE_TRANSFORM.transform(e.getPoint(),p);// pixels to meters.
-		PhysicsElement newElement = world.find(p.getX(), p.getY()); 
+		world.find(p.getX(), p.getY());
+		PhysicsElement newElement = world.findCurrentElement(); 
 		if (newElement == currentElement) return;
 		if (currentElement != null) {
 			currentElement.setReleased();

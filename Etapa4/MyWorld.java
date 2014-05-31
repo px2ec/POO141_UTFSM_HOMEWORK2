@@ -2,6 +2,9 @@ import java.util.*;
 import java.io.*;
 import javax.swing.Timer;
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.ListIterator;
 
 public class MyWorld implements ActionListener {
 	private PrintStream out;
@@ -11,6 +14,9 @@ public class MyWorld implements ActionListener {
 	private double t;        // simulation time
 	private double delta_t;        // in seconds
 	private double refreshPeriod;  // in seconds
+	private ArrayList<PhysicsElement> inpos;
+	private PhysicsElement current;
+	private ListIterator<PhysicsElement> litr;
 
 	public MyWorld() {
 		this(System.out);
@@ -23,6 +29,7 @@ public class MyWorld implements ActionListener {
 		refreshPeriod = 0.06; // 60.00 [ms]
 		delta_t = 0.00001;    //  0.01 [ms]
 		elements = new ArrayList<PhysicsElement>();
+		inpos = new ArrayList<PhysicsElement>();
 		passingTime = new Timer((int)(refreshPeriod*1000), this);    
 	}
 
@@ -108,11 +115,24 @@ public class MyWorld implements ActionListener {
 		return elements;
 	}
 
-	public PhysicsElement find(double x, double y) {
-		for (PhysicsElement e: elements)
+	public void find(double x, double y) {
+		inpos.clear();
+		for (PhysicsElement e: elements) {
 				if (e.contains(x,y))
-					return e;
-		
-		return null;
+					inpos.add(e);
+		}
+		if (inpos.size() != 0) {
+			litr = inpos.listIterator();
+			current = inpos.get(0);
+		}
+	}
+
+	public PhysicsElement findCurrentElement() {	
+		return current;
+	}
+
+	public void findNext(){
+		if (litr.hasNext()) 
+			current = litr.next();
 	}
 }
