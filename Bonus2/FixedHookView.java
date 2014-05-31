@@ -14,13 +14,7 @@ public class FixedHookView {
 	}
 
 	public boolean contains(double x, double y) {
-		double hPos = hook.getPosition();
-
-		if ((hPos - width/2.0) <= x && x <= (hPos + width/2.0))
-			if ((hPos - width/2.0) <= y && y <= (hPos + width/2.0))
-				return true;
-
-		return false;
+		return shape.getBounds2D().contains(x,y);
 	}
 
 	public void setSelected() {

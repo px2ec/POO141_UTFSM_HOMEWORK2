@@ -14,13 +14,7 @@ public class BlockView {
 	}
 
 	public boolean contains(double x, double y) {
-		double bPos = block.getPosition();
-
-		if ((bPos - width/2.0) <= x && x <= (bPos + width/2.0))
-			if ((bPos - width/2.0) <= y && y <= (bPos + width/2.0))
-				return true;
-
-		return false;
+		return shape.getBounds2D().contains(x,y);
 	}
 
 	public void setSelected() {
