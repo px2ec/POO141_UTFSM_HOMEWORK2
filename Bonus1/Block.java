@@ -42,7 +42,7 @@ public class Block extends PhysicsElement implements SpringAttachable, Simulatea
 	}
 	private double getNetForce(MyWorld world) {
 		double extForce = 0;
-		double gravity = world.getGravity();
+		double gravity = world.getGravity(); // Falta implementarla en la clase MyWorld
 		//add kinetic friction force
 		extForce += gravity * mass * cof * (int) Math.signum(speed_t);
 		//add static friction force
@@ -131,12 +131,12 @@ public class Block extends PhysicsElement implements SpringAttachable, Simulatea
 	}
 
 	public void detachSpring(Spring spring) {
-		if (spring == null)
+		if (spring == null || springs == null)
 			return;
 
 		for (Spring s: springs) {
 			if (spring.getId() == s.getId()) {
-				springs.remove(spring);
+				springs.remove(s);
 			}
 
 		}

@@ -1,5 +1,8 @@
+import java.awt.*;
 import java.awt.event.*; 
+import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 
 public class LabMenuListener implements ActionListener {
@@ -7,6 +10,7 @@ public class LabMenuListener implements ActionListener {
 	public LabMenuListener (MyWorld  w){
 		world = w;
 	}
+
 	public void actionPerformed(ActionEvent e) {
 		JMenuItem menuItem = (JMenuItem)(e.getSource());
 		String text = menuItem.getText();

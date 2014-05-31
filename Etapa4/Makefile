@@ -16,7 +16,9 @@ CLASSES = \
 	SpringAttachable.class\
 	LabMenuListener.class \
 	Simulateable.class \
-	MyWorldView.class
+	MyWorldView.class \
+	MouseListener.class \
+	MyKeyListener.class
 
 SOURCES = \
 	Ball.java \
@@ -31,7 +33,9 @@ SOURCES = \
 	SpringAttachable.java\
 	LabMenuListener.java \
 	Simulateable.java \
-	MyWorldView.java
+	MyWorldView.java \
+	MouseListener.java \
+	MyKeyListener.java
 
 MAIN = PhysicsLab
 
@@ -54,3 +58,9 @@ clean:
 mrproper:
 	make clean
 	rm -rf res*.csv res*.png
+
+rebuild:
+	make clean && make
+
+rerun:
+	make rebuild && make run

@@ -13,10 +13,11 @@ public class PhysicsLab {
 }
 
 class PhysicsLab_GUI extends JFrame {
+	MyWorld world = new MyWorld();
 	public PhysicsLab_GUI() {
 		setTitle("My Small and Nice Physics Laboratory");
 		setSize(MyWorldView.WIDTH, MyWorldView.HEIGHT+50);  // height+50 to account for menu height
-		MyWorld world = new MyWorld();
+		
 		MyWorldView  worldView = new MyWorldView(world);
 		world.setView(worldView);
 		add(worldView);  
@@ -56,6 +57,10 @@ class PhysicsLab_GUI extends JFrame {
 		menu.add(menuItem);
 
 		menuItem = new JMenuItem("Stop");
+		menuItem.addActionListener(menu_l);
+		menu.add(menuItem);
+
+		menuItem = new JMenuItem("Next Item");
 		menuItem.addActionListener(menu_l);
 		menu.add(menuItem);
 

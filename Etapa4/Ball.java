@@ -109,12 +109,12 @@ public class Ball extends PhysicsElement implements Simulateable, SpringAttachab
 		springs.add(spring);
 	}
 	public void detachSpring(Spring spring) {
-		if (spring == null)
+		if (spring == null || springs.size() == 0)
 			return;
 
 		for (Spring s: springs) {
 			if (spring.getId() == s.getId()) {
-				springs.remove(spring);
+				springs.remove(s);
 			}
 
 		}
