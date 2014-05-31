@@ -45,7 +45,7 @@ MAIN = PhysicsLab
 all: $(CLASSES)
 
 doc: $(SOURCES)
-	$(JDOC) $(SOURCES) -d Documentation
+	$(JDOC) -autor $(SOURCES) -d Documentation
 
 run: $(MAIN).class
 	$(JVM) $(MAIN)

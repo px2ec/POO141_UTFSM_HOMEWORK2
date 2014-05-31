@@ -1,3 +1,9 @@
+
+/**
+ * Ball class
+ * @author Pedro Espinoza, Luis Ojeda, Felipe Veas
+ */
+
 import java.util.*;
 import java.awt.*;
 
@@ -18,6 +24,10 @@ public class Ball extends PhysicsElement implements Simulateable, SpringAttachab
 		// Nobody can create a block without state
 		this(1.0, 0.1, 0,0);
 	}
+
+	/**
+	* @return constructor <tt>Ball</tt>
+	*/
 	public Ball(double mass, double radius, double position, double speed){
 		super(id++);
 		this.pos_t = position;
